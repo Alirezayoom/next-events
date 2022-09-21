@@ -12,7 +12,7 @@ const EventList = (props) => {
             key={event.id}
             id={event.id}
             title={event.title}
-            lcoation={event.location}
+            location={event.location}
             date={event.date}
             image={event.image}
           />
