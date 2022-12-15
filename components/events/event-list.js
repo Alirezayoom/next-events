@@ -1,6 +1,6 @@
 import React from "react";
-import EventItem from "./EventItem";
-import classes from "./EventList.module.css";
+import EventItem from "./event-item";
+import classes from "./event-list.module.css";
 
 const EventList = (props) => {
   const { items } = props;
