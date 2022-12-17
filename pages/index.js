@@ -1,9 +1,18 @@
+import Head from "next/head";
+
 import EventList from "../components/events/event-list";
 import { getFeaturedEvents } from "../helpers/api-u";
 
 const HomePage = (props) => {
   return (
     <div>
+      <Head>
+        <title>NextJS Events</title>
+        <meta
+          name="description"
+          content="find a lot of great events that allow you to evolve"
+        />
+      </Head>
       <EventList items={props.featuredEvents} />
     </div>
   );
