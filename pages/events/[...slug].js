@@ -25,6 +25,7 @@ const FilteredEventsPage = (props) => {
   if (props.hasError) {
     return (
       <>
+        {pageHead}
         <ErrorAlert>
           <p>Invalid filter, please adjust your values!</p>
         </ErrorAlert>
@@ -40,6 +41,7 @@ const FilteredEventsPage = (props) => {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        {pageHead}
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
