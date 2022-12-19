@@ -2,6 +2,7 @@ import { MongoClient } from "mongodb";
 
 async function handler(req, res) {
   const eventId = req.query.eventId;
+
   const client = await MongoClient.connect(
     "mongodb+srv://ali:ali@cluster0.qafjedp.mongodb.net/events?retryWrites=true&w=majority"
   );
@@ -28,7 +29,7 @@ async function handler(req, res) {
     };
 
     const db = client.db();
-    const result = await db.collection("comments").insertOne({ newComment });
+    const result = await db.collection("comments").insertOne(newComment);
 
     console.log(result);
 
@@ -38,12 +39,15 @@ async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const dummyList = [
-      { id: "c1", name: "ali", text: "first comment" },
-      { id: "c2", name: "reza", text: "second comment" },
-    ];
+    const db = client.db();
 
-    res.status(201).json({ comments: dummyList });
+    const documents = await db
+      .collection("comments")
+      .find()
+      .sort({ _id: -1 })
+      .toArray();
+
+    res.status(201).json({ comments: documents });
   }
 
   client.close();
