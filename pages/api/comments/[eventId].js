@@ -10,9 +10,9 @@ async function handler(req, res) {
   let client;
 
   try {
-    const client = await connectDatabase();
+    client = await connectDatabase();
   } catch (error) {
-    res.status(500).json({ message: "connecting to db faild" });
+    res.status(500).json({ message: "conting to db faild" });
     return;
   }
 
@@ -52,10 +52,10 @@ async function handler(req, res) {
 
   if (req.method === "GET") {
     try {
-      await getAllDocuments(client, "comments", { _id: -1 });
-      res.status(201).json({ comments: documents });
+      const documents = await getAllDocuments(client, "comments", { _id: -1 });
+      res.status(200).json({ comments: documents });
     } catch (error) {
-      res.status(500).json({ message: "getting comments faild" });
+      res.status(500).json({ message: "Getting comments failed." });
     }
   }
 
